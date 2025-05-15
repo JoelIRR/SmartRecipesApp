@@ -1,0 +1,62 @@
+
+services:
+  recetasdb:
+    image: postgres:15
+    container_name: recetas_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: recetasdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - recetas_net
+
+  recetasapi:
+    build:
+      context: ./RecetasService
+    container_name: recetasapi
+    depends_on:
+      - recetasdb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=recetasdb;Port=5432;Database=recetasdb;Username=postgres;Password=postgres
+    ports:
+      - "5000:8080"
+    networks:
+      - recetas_net
+
+  analisisservice:
+    build:
+      context: ./AnalisisService
+    container_name: analisisservice
+    depends_on:
+      - recetasapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5001:8080"
+    networks:
+      - recetas_net
+
+  apigateway:
+    build:
+      context: ./ApiGateway
+    container_name: apigateway
+    depends_on:
+      - recetasapi
+      - analisisservice
+    ports:
+      - "8080:80"
+    networks:
+      - recetas_net
+
+
+volumes:
+  pgdata:
+
+networks:
+  recetas_net:

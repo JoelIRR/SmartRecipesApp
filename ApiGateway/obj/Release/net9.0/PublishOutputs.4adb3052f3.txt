@@ -1,0 +1,9 @@
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\ApiGateway.exe
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\appsettings.Development.json
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\appsettings.json
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\ApiGateway.dll
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\ApiGateway.deps.json
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\ApiGateway.runtimeconfig.json
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\ApiGateway.pdb
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\System.IO.Hashing.dll
+C:\Users\ASUS\Desktop\SmartRecipesApp\ApiGateway\publish\Yarp.ReverseProxy.dll

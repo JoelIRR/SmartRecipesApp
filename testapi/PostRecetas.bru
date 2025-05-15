@@ -1,0 +1,22 @@
+meta {
+  name: PostRecetas
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/recetas/api/recetas
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre": "Sopa de verduras",
+    "descripcion": "Receta saludable",
+    "instrucciones": "Cortar, hervir, servir",
+    "tiempoPreparacion": 30,
+    "dificultad": "Fácil"
+  }
+  
+}
