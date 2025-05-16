@@ -122,7 +122,3 @@ http://localhost:8004/api/Usuarios/{id-user}/favoritas
 * `GET /api/usuarios/listado` → Muestra todos los usuarios y sus correros.
 
 ---
-
-## 📝 Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
