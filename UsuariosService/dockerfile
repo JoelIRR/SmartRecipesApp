@@ -1,0 +1,23 @@
+# Imagen base para runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+WORKDIR /app
+
+# Imagen para build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+
+# Copiar y restaurar proyecto
+COPY ["UsuariosService.csproj", "./"]
+RUN dotnet restore "UsuariosService.csproj"
+
+# Copiar archivos y publicar
+COPY . .
+RUN dotnet publish "UsuariosService.csproj" -c Release -o /app/publish
+
+# Imagen final
+FROM base AS final
+WORKDIR /app
+
+
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "UsuariosService.dll"]

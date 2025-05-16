@@ -6,6 +6,9 @@ using RecetasService.Services;
 // Builder - Contructor
 var builder = WebApplication.CreateBuilder(args);
 
+// Service de HealtChecks 
+builder.Services.AddHealthChecks();
+
 // PostgreSQL connection (detalles en: appsettings.json)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +47,8 @@ app.UseSwaggerUI();
 
 app.UseAuthorization();
 
+// Endpoint de health check
+app.MapHealthChecks("/health");
 //Mapeo de rutas
 app.MapControllers();
 

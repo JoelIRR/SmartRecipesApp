@@ -15,6 +15,21 @@ services:
     networks:
       - recetas_net
 
+  usuariosdb:
+    image: postgres:15
+    container_name: usuarios_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: usuariosdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_usuarios:/var/lib/postgresql/data
+    networks:
+      - recetas_net
+
   recetasapi:
     build:
       context: ./RecetasService
@@ -25,7 +40,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=recetasdb;Port=5432;Database=recetasdb;Username=postgres;Password=postgres
     ports:
-      - "5000:8080"
+      - "8002:8080"
     networks:
       - recetas_net
 
@@ -38,7 +53,21 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "5001:8080"
+      - "8003:8080"
+    networks:
+      - recetas_net
+
+  usuariosservice:
+    build:
+      context: ./UsuariosService
+    container_name: usuariosservice
+    depends_on:
+      - usuariosdb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=usuariosdb;Port=5432;Database=usuariosdb;Username=postgres;Password=postgres
+    ports:
+      - "8004:8080"
     networks:
       - recetas_net
 
@@ -49,14 +78,15 @@ services:
     depends_on:
       - recetasapi
       - analisisservice
+      - usuariosservice
     ports:
-      - "8080:80"
+      - "8001:8080"
     networks:
       - recetas_net
 
-
 volumes:
   pgdata:
+  pgdata_usuarios:
 
 networks:
   recetas_net:

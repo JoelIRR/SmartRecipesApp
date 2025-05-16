@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "rja1mjOngEGCw10HsBMtxdb7srGMhvHlCMC0oP2S/SQ=",
+  "Source": "UsuariosService",
+  "BasePath": "_content/UsuariosService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

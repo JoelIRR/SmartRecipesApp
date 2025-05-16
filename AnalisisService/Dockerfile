@@ -13,8 +13,6 @@ RUN dotnet publish "AnalisisService.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 
-# Configura la URL de escucha en el puerto 8080 dentro del contenedor
-ENV ASPNETCORE_URLS=http://+:8080
 
 
 COPY --from=build /app/publish .
